@@ -5,8 +5,10 @@ import 'package:sky_feels/core/error/failure.dart';
 import 'package:sky_feels/core/network/network_info.dart';
 import 'package:sky_feels/weather/data/data_sources/weather_local_data_source.dart';
 import 'package:sky_feels/weather/data/data_sources/weather_remote_data_source.dart';
+import 'package:sky_feels/weather/data/models/weather_model.dart';
 import 'package:sky_feels/weather/domain/entities/weather_entity.dart';
 import 'package:sky_feels/weather/domain/repositories/weather_repository.dart';
+import 'package:sky_feels/weather/data/models/weather_model.dart';
 
 class WeatherRepositoryImpl implements WeatherRepository {
   final WeatherRemoteDataSource remoteDataSource;
@@ -24,8 +26,20 @@ class WeatherRepositoryImpl implements WeatherRepository {
     try {
       if (await networkInfo.isConnected) {
         final remoteWeather = await remoteDataSource.getWeatherByCity(cityName);
-        localDataSource.cacheWeather(remoteWeather); // cache optional
-        return Right(remoteWeather);
+        final remoteForecast = await remoteDataSource.getForecastByCity(cityName);
+
+        // Combine current weather and forecast data
+        final combinedWeather = WeatherModel(
+          cityName: remoteWeather.cityName,
+          temperature: remoteWeather.temperature,
+          condition: remoteWeather.condition,
+          windSpeed: remoteWeather.windSpeed,
+          humidity: remoteWeather.humidity,
+          forecast: remoteForecast.forecast,
+        );
+
+        localDataSource.cacheWeather(combinedWeather); // cache optional
+        return Right(combinedWeather);
       } else {
         final localWeather = await localDataSource.getLastWeather();
         return Right(localWeather);

@@ -4,6 +4,7 @@ import 'package:sky_feels/weather/data/models/weather_model.dart';
 
 abstract class WeatherRemoteDataSource {
   Future<WeatherModel> getWeatherByCity(String cityName);
+  Future<WeatherModel> getForecastByCity(String cityName);
 }
 
 class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
@@ -19,6 +20,17 @@ class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
       return WeatherModel.fromJson(response.data);
     } else {
       throw ServerException(); // custom exception
+    }
+  }
+
+  @override
+  Future<WeatherModel> getForecastByCity(String cityName) async {
+    final response = await dio.get('forecast', queryParameters: {'q': cityName});
+
+    if (response.statusCode == 200) {
+      return WeatherModel.fromJson(response.data);
+    } else {
+      throw ServerException();
     }
   }
 }

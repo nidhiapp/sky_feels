@@ -20,6 +20,9 @@ class WeatherAppTheme {
   static const Color deactivatedText = Color(0xFF767676);
   static const Color dismissibleBackground = Color(0xFF364A54);
   static const Color spacer = Color(0xFFF2F2F2);
+  static const Color gradientPurple1 = Color.fromARGB(255, 108, 71, 204);
+  static const Color gradientPurple2 = Color.fromARGB(255, 147, 127, 236);
+  static const Color gradientGrey =Color.fromARGB(236, 186, 186, 188);
   static const String fontName = 'Roboto';
 
   // static const TextTheme textTheme = TextTheme(
@@ -48,13 +51,22 @@ class WeatherAppTheme {
     letterSpacing: 0.27,
     color: darkerText,
   );
-    static const TextStyle headline2 = TextStyle(
+    static const TextStyle headline2White = TextStyle(
+    fontFamily: fontName,
+    fontWeight: FontWeight.w600,
+    fontSize: 20,
+    letterSpacing: 0.27,
+    color: white,
+  );  
+
+     static const TextStyle headline2Black = TextStyle(
     fontFamily: fontName,
     fontWeight: FontWeight.w600,
     fontSize: 20,
     letterSpacing: 0.27,
     color: darkerText,
   );
+
 
   static const TextStyle title = TextStyle(
     fontFamily: fontName,
