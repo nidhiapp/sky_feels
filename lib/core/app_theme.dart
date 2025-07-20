@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class WeatherAppTheme {
   WeatherAppTheme._();
  static const Color gradientBlue1 = Color(0xFFBFD8FF);
-   static const Color gradientBlue2 = Color(0xFF81B3FF);
+   static const Color gradientBlue2 = Color.fromARGB(255, 76, 127, 203);
   static const Color nearlyWhite = Color(0xFFFAFAFA);
   static const Color white = Color(0xFFFFFFFF);
   static const Color background = Color(0xFFF2F3F8);

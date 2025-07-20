@@ -7,6 +7,9 @@ part 'weather_state.freezed.dart';
 class WeatherState with _$WeatherState {
   const factory WeatherState.initial() = WeatherInitial;
   const factory WeatherState.loading() = WeatherLoading;
-  const factory WeatherState.loaded(WeatherEntity weather) = WeatherLoaded;
-  const factory WeatherState.error(String message) = WeatherError;
+  const factory WeatherState.loaded({
+    required WeatherEntity weather,
+    @Default(0) int selectedForecastIndex,
+  }) = WeatherLoaded;
+    const factory WeatherState.error(String message) = WeatherError;
 }

@@ -10,6 +10,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc(this.getWeatherUseCase) : super(const WeatherInitial()) {
     on<FetchWeather>(_onFetchWeather);
     on<RefreshWeather>(_onRefreshWeather);
+    on<SelectForecastDay>(_onSelectForecastDay);
   }
 
   Future<void> _onFetchWeather(
@@ -18,18 +19,25 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     final result = await getWeatherUseCase(event.cityName);
     result.fold(
       (failure) => emit(WeatherError(_mapFailureToMessage(failure))),
-      (weather) => emit(WeatherLoaded(weather)),
+      (weather) => emit(WeatherLoaded(weather: weather, selectedForecastIndex: 0)),
     );
   }
 
   Future<void> _onRefreshWeather(
       RefreshWeather event, Emitter<WeatherState> emit) async {
-    // You could show pull-to-refresh indicator separately if needed
     final result = await getWeatherUseCase(event.cityName);
     result.fold(
       (failure) => emit(WeatherError(_mapFailureToMessage(failure))),
-      (weather) => emit(WeatherLoaded(weather)),
+      (weather) => emit(WeatherLoaded(weather: weather, selectedForecastIndex: 0)),
     );
+  }
+
+  void _onSelectForecastDay(
+      SelectForecastDay event, Emitter<WeatherState> emit) {
+    final currentState = state;
+    if (currentState is WeatherLoaded) {
+      emit(currentState.copyWith(selectedForecastIndex: event.index));
+    }
   }
 
   String _mapFailureToMessage(Failure failure) {

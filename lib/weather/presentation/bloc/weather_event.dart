@@ -6,4 +6,7 @@ part 'weather_event.freezed.dart';
 class WeatherEvent with _$WeatherEvent {
   const factory WeatherEvent.fetchWeather(String cityName) = FetchWeather;
   const factory WeatherEvent.refreshWeather(String cityName) = RefreshWeather;
+  const factory WeatherEvent.selectForecastDay(int index) = SelectForecastDay;
+
+
 }
