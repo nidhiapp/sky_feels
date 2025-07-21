@@ -13,10 +13,20 @@ class _TutorialWidgetState extends State<TutorialWidget> {
   final CarouselSliderController _carouselController = CarouselSliderController();
   int _currentIndex = 0;
 
-  final List<String> tutorialText = [
-    'Check the weather conditions',
-    'You pray for rain, you gotta deal with the mud too. That’s a part of it.',
-    'Enjoy your day with Sky Feels!',
+  final List<Map<String, dynamic>> tutorialContent = [
+    {
+      'text': 'Check the weather conditions',
+      'subText': 'Stay updated with real-time forecasts',
+    },
+    {
+      'text':'Prepare for all weather possibilities' ,
+      'subText': 
+      'You pray for rain, you gotta deal with the mud too. That’s a part of it.',
+    },
+    {
+      'text': 'Enjoy your day with Sky Feels!',
+      'subText': 'Plan your day with confidence',
+    },
   ];
 
   @override
@@ -25,9 +35,9 @@ class _TutorialWidgetState extends State<TutorialWidget> {
       padding: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 15.0),
       child: Column(
         children: [
-           Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: tutorialText.asMap().entries.map((entry) {
+            children: tutorialContent.asMap().entries.map((entry) {
               return GestureDetector(
                 onTap: () => _carouselController.animateToPage(entry.key),
                 child: Container(
@@ -44,27 +54,33 @@ class _TutorialWidgetState extends State<TutorialWidget> {
               );
             }).toList(),
           ),
-           const SizedBox(height: 16),
+          const SizedBox(height: 16),
           CarouselSlider(
-            items: tutorialText
-                .map((e) => Container(
-                   decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: WeatherAppTheme.gradientBlue2.withOpacity(0.4),
-         
-          ),
-                  child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Text(
-                            e,
-                            style: WeatherAppTheme.title,
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                      ),
-                ))
-                .toList(),
+            items: tutorialContent.map((content) => Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 12),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Text(
+                    content['text'],
+                    style: WeatherAppTheme.title,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Text(
+                    content['subText'],
+                    style: WeatherAppTheme.subtitle,
+                  
+                      
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            )).toList(),
             carouselController: _carouselController,
             options: CarouselOptions(
               autoPlay: true,
@@ -80,8 +96,6 @@ class _TutorialWidgetState extends State<TutorialWidget> {
               },
             ),
           ),
-         
-         
         ],
       ),
     );

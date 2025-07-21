@@ -83,83 +83,86 @@ class _WeatherScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              gradient: RadialGradient(
-                colors: [
-                  WeatherAppTheme.gradientBlue1,
-                  WeatherAppTheme.gradientBlue2,
+    return GestureDetector(
+      onTap: ()=> FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                gradient: RadialGradient(
+                  colors: [
+                    WeatherAppTheme.gradientBlue1,
+                    WeatherAppTheme.gradientBlue2,
+                  ],
+                  center: Alignment.center,
+                  radius: 1.0,
+                  stops: [0.0, 1.0],
+                  tileMode: TileMode.clamp,
+                ),
+              ),
+            ),
+            Container(
+              height: 500,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: WeatherAppTheme.background,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(224, 175, 174, 174),
+                    blurRadius: 4,
+                    offset: Offset(0, -0.5),
+                  ),
                 ],
-                center: Alignment.center,
-                radius: 1.0,
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp,
               ),
             ),
-          ),
-          Container(
-            height: 500,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              color: WeatherAppTheme.background,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Color.fromARGB(224, 175, 174, 174),
-                  blurRadius: 4,
-                  offset: Offset(0, -0.5),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-            child: Column(
-              children: [
-                const SizedBox(height: 40),
-                BlocBuilder<AppBloc, AppState>(
-                  builder: (context, appState) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Icon(Icons.arrow_back, color: WeatherAppTheme.white)),
-                        const SizedBox(width: 8),
-                        if (appState.isSearchBarVisible)
-                          Expanded(
-                            child: SearchBarWidget(
-                              controller: _controller,
-                              onSearch: _search,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+              child: Column(
+                children: [
+                  const SizedBox(height: 40),
+                  BlocBuilder<AppBloc, AppState>(
+                    builder: (context, appState) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Icon(Icons.arrow_back, color: WeatherAppTheme.white)),
+                          const SizedBox(width: 8),
+                          if (appState.isSearchBarVisible)
+                            Expanded(
+                              child: SearchBarWidget(
+                                controller: _controller,
+                                onSearch: _search,
+                              ),
                             ),
+                          IconButton(
+                            icon: Icon(
+                              appState.isSearchBarVisible ? Icons.cancel_outlined : Icons.search,
+                              color: WeatherAppTheme.white,
+                            ),
+                            onPressed: () {
+                              context.read<AppBloc>().add(const AppEvent.toggleSearchBar());
+                            },
                           ),
-                        IconButton(
-                          icon: Icon(
-                            appState.isSearchBarVisible ? Icons.cancel_outlined : Icons.search,
-                            color: WeatherAppTheme.white,
-                          ),
-                          onPressed: () {
-                            context.read<AppBloc>().add(const AppEvent.toggleSearchBar());
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                ),
-                Expanded(child: _buildContent()),
-              ],
+                        ],
+                      );
+                    },
+                  ),
+                  Expanded(child: _buildContent()),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

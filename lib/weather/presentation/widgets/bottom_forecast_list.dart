@@ -62,7 +62,7 @@ class BottomForecastList extends StatelessWidget {
     }
 
     return Column(
-      children: dailyForecasts.take(4).map((dayForecast) {
+      children: dailyForecasts.map((dayForecast) {
         final date = DateTime.parse(dayForecast.date);
         final formattedDate = DateFormat('dd MMM  EEEE').format(date); // 👈 New format
 
