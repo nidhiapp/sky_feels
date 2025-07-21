@@ -26,6 +26,20 @@ class HorizontalForecast extends StatelessWidget {
       (index) => currentDay.add(Duration(days: index)),
     );
 
+    // Group forecasts by day (yyyy-MM-dd)
+    Map<String, ForecastEntity> dailyForecastMap = {};
+    for (final f in forecasts) {
+      try {
+        final date = DateTime.parse(f.date);
+        final dayKey = DateFormat('yyyy-MM-dd').format(date);
+        if (!dailyForecastMap.containsKey(dayKey)) {
+          dailyForecastMap[dayKey] = f;
+        }
+      } catch (e) {
+        debugPrint('Could not parse date: ${f.date}');
+      }
+    }
+
     return SizedBox(
       height: 90,
       child: ListView.builder(
@@ -33,7 +47,8 @@ class HorizontalForecast extends StatelessWidget {
         itemCount: 7,
         itemBuilder: (context, index) {
           final day = next7Days[index];
-          final forecast = forecasts[index]; // Ensure forecasts has 7 items
+          final dayKey = DateFormat('yyyy-MM-dd').format(day);
+          final forecast = dailyForecastMap[dayKey];
 
           return GestureDetector(
             onTap: () => onDaySelected(index),
@@ -63,7 +78,7 @@ class HorizontalForecast extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  WeatherIcon(condition: forecast.condition, size: 30),
+                  WeatherIcon(condition: forecast?.condition, size: 30),
                   const SizedBox(height: 8),
                 ],
               ),

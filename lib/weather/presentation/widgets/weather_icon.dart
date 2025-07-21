@@ -19,7 +19,7 @@ class WeatherIcon extends StatelessWidget {
       case 'clear':
         return Icon(Icons.wb_sunny, color: Colors.orange, size: size);
       case 'clouds':
-        return Icon(Icons.cloud, color: Color.fromARGB(255, 135, 188, 215), size: size);
+        return Icon(Icons.cloud, color: Color.fromARGB(255, 79, 128, 152), size: size);
       case 'rain':
       case 'drizzle':
         return Icon(Icons.beach_access, color: Colors.blue, size: size);
