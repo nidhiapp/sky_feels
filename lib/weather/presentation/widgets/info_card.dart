@@ -7,18 +7,18 @@ class InfoCard extends StatelessWidget {
   final String value;
 
   const InfoCard({
-    Key? key,
+    super.key,
     required this.icon,
     required this.label,
     required this.value,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          padding:EdgeInsets.all(10.0),
+          padding:const EdgeInsets.all(10.0),
              decoration: BoxDecoration(
         color: WeatherAppTheme.gradientBlue1.withOpacity(0.4),
         borderRadius: BorderRadius.circular(10),

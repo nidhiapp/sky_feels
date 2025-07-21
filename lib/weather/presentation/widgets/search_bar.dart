@@ -6,10 +6,10 @@ class SearchBarWidget extends StatelessWidget {
   final VoidCallback onSearch;
 
   const SearchBarWidget({
-    Key? key,
+    super.key,
     required this.controller,
     required this.onSearch,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,15 +32,15 @@ class SearchBarWidget extends StatelessWidget {
                   fillColor: Colors.transparent,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: WeatherAppTheme.white),
+                    borderSide: const BorderSide(color: WeatherAppTheme.white),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: WeatherAppTheme.white),
+                    borderSide: const BorderSide(color: WeatherAppTheme.white),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: WeatherAppTheme.white),
+                    borderSide: const BorderSide(color: WeatherAppTheme.white),
                   ),
                 ),
                 onSubmitted: (_) => onSearch(),

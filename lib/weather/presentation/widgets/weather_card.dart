@@ -12,12 +12,12 @@ class WeatherCard extends StatelessWidget {
   //final Animation<double> fadeAnimation;
 
   const WeatherCard({
-    Key? key,
+    super.key,
     required this.weather,
     required this.selectedForecastIndex,
     required this.onForecastSelected,
   //  required this.fadeAnimation,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class WeatherCard extends StatelessWidget {
         color: WeatherAppTheme.gradientBlue2.withOpacity(0.4),
         blurRadius: 30,
         spreadRadius: 5,
-        offset: const Offset(0, 10), // Pushes shadow downward
+        offset: const Offset(0, 10),
       ),
     ],
                 ),

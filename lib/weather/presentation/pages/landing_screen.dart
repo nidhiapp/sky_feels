@@ -31,7 +31,7 @@ class LandingScreen extends StatelessWidget {
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                 Text(
                     'Welcome to',
                     style: TextStyle(
                       fontSize: 28,
@@ -39,8 +39,8 @@ class LandingScreen extends StatelessWidget {
                       fontWeight: FontWeight.w300,
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  const Text(
+                 SizedBox(height: 8),
+                   Text(
                     'Sky Feels',
                     style: WeatherAppTheme.headline2White,
                   ),

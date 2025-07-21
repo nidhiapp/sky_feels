@@ -15,20 +15,17 @@ import 'weather/domain/repositories/weather_repository.dart' as repositories;
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  // Features - Weather
   sl.registerFactory(() => WeatherBloc(sl()));
 
  
   sl.registerLazySingleton(() => usecases.WeatherUseCase(sl<repositories.WeatherRepository>()));
 
-  // Repository
   sl.registerLazySingleton<WeatherRepository>(() => WeatherRepositoryImpl(
     remoteDataSource: sl(),
     localDataSource: sl(),
     networkInfo: sl(),
   ));
 
-  // Data sources
   sl.registerLazySingleton<WeatherRemoteDataSource>(
     () => WeatherRemoteDataSourceImpl(dio: sl()),
   );
@@ -37,11 +34,9 @@ Future<void> init() async {
     () => WeatherLocalDataSourceImpl(sharedPreferences: sl()),
     );
 
-  //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
   sl.registerLazySingleton<Dio>(() => ApiClient().client);
 
-  //! External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => Connectivity());

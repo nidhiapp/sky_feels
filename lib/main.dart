@@ -8,7 +8,7 @@ import 'weather/domain/usecases/weather_usecase.dart' as usecases;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await ic.init(); // initialize dependencies
+  await ic.init();
   runApp(const MyApp());
 }
 
@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
          BlocProvider<AppBloc>(
           create: (_) => AppBloc(),
         ),
-        // Add other BLoCs here as needed
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

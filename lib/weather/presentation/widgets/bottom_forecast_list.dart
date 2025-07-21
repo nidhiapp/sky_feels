@@ -7,9 +7,9 @@ class BottomForecastList extends StatelessWidget {
   final WeatherEntity weather;
 
   const BottomForecastList({
-    Key? key,
+    super.key,
     required this.weather,
-  }) : super(key: key);
+  });
 
   Widget _getWeatherIcon(String? condition) {
     if (condition == null) {

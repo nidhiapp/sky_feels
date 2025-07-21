@@ -19,7 +19,7 @@ class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
     if (response.statusCode == 200) {
       return WeatherModel.fromJson(response.data);
     } else {
-      throw ServerException(); // custom exception
+      throw ServerException();
     }
   }
 

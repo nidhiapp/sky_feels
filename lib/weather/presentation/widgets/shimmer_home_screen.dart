@@ -3,7 +3,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:sky_feels/core/app_theme.dart';
 
 class ShimmerHomeScreen extends StatelessWidget {
-  const ShimmerHomeScreen({Key? key}) : super(key: key);
+  const ShimmerHomeScreen({super.key});
 
   Widget _shimmerBox({
     double width = double.infinity,

@@ -10,12 +10,12 @@ class HorizontalForecast extends StatelessWidget {
   final List<ForecastEntity> forecasts;
 
   const HorizontalForecast({
-    Key? key,
+    super.key,
     required this.currentDay,
     required this.selectedIndex,
     required this.onDaySelected,
     required this.forecasts,
-  }) : super(key: key);
+  });
 
   Widget _getWeatherIcon(String? condition) {
     if (condition == null) {
