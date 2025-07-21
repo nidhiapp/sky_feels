@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sky_feels/core/app_text.dart';
 import '../../domain/entities/weather_entity.dart';
 import 'info_card.dart';
 import 'horizontal_forecast.dart';
@@ -88,7 +89,7 @@ class WeatherCard extends StatelessWidget {
                                 fontSize: 44,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
-                        const Text("Feels like 32°",
+                        const Text(AppStrings.feelsLike30,
                             style: TextStyle(color: Colors.white70)),
                       ],
                     ),
@@ -101,17 +102,17 @@ class WeatherCard extends StatelessWidget {
                   children: [
                     InfoCard(
                       icon: Icons.water_drop,
-                      label: "Humidity",
+                      label:AppStrings.humidity ,
                       value: "${selectedDayForecast.humidity?.toStringAsFixed(0) ?? '--'}%",
                     ),
                     InfoCard(
                       icon: Icons.air,
-                      label: "Wind",
+                      label:AppStrings.windSpeed,
                       value: "${selectedDayForecast.windSpeed?.toStringAsFixed(1) ?? '--'} km/h",
                     ),
                     InfoCard(
                       icon: Icons.cloud,
-                      label: "Rain",
+                      label: AppStrings.rain,
                       value: "${selectedDayForecast.rainVolume?.toStringAsFixed(1) ?? '--'} mm",
                     ),
                   ],

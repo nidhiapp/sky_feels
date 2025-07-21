@@ -19,12 +19,12 @@ class BottomForecastList extends StatelessWidget {
       case 'clear':
         return const Icon(Icons.wb_sunny, color: Colors.orange, size: 40);
       case 'clouds':
-        return const Icon(Icons.cloud, color: Colors.blueGrey, size: 40);
+        return const Icon(Icons.cloud, color: Color.fromARGB(255, 135, 188, 215), size: 40);
       case 'rain':
       case 'drizzle':
         return const Icon(Icons.beach_access, color: Colors.blue, size: 40);
       case 'snow':
-        return const Icon(Icons.ac_unit, color: Colors.lightBlue, size: 40);
+        return const Icon(Icons.ac_unit, color: Color.fromARGB(255, 99, 106, 109), size: 40);
       case 'thunderstorm':
         return const Icon(Icons.flash_on, color: Colors.yellow, size: 40);
       case 'mist':

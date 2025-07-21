@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sky_feels/core/app_text.dart';
 import 'package:sky_feels/core/app_theme.dart';
 import 'package:sky_feels/core/bloc/app_bloc.dart';
 import 'package:sky_feels/core/bloc/app_event.dart';
@@ -32,16 +33,12 @@ class _WeatherScreenState extends State<HomeScreen>
       duration: const Duration(milliseconds: 800),
       vsync: this,
     );
-    // _fadeAnimation = CurvedAnimation(
-    //   parent: _animationController,
-    //   curve: Curves.easeInOut,
-    // );
 
     _fetchInitialWeather();
   }
 
   void _fetchInitialWeather() {
-    const defaultCity = "New Delhi";
+    const defaultCity = AppStrings.defaultCity;
     context.read<WeatherBloc>().add(const WeatherEvent.fetchWeather(defaultCity));
   }
 

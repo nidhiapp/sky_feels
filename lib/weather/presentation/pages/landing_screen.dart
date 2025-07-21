@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sky_feels/core/app_images.dart';
+import 'package:sky_feels/core/app_text.dart';
 import 'package:sky_feels/core/app_theme.dart';
 import 'package:sky_feels/weather/presentation/pages/home_screen.dart';
 import 'package:sky_feels/weather/presentation/widgets/tutorial_widget.dart';
@@ -32,7 +33,7 @@ class LandingScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                  Text(
-                    'Welcome to',
+                   AppStrings.welcomeScreenText ,
                     style: TextStyle(
                       fontSize: 28,
                       color: Colors.white70,
@@ -41,7 +42,7 @@ class LandingScreen extends StatelessWidget {
                   ),
                  SizedBox(height: 8),
                    Text(
-                    'Sky Feels',
+                    AppStrings.appTitle,
                     style: WeatherAppTheme.headline2White,
                   ),
                 ])),

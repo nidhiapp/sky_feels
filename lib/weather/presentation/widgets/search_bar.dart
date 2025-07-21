@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sky_feels/core/app_text.dart';
 import 'package:sky_feels/core/app_theme.dart';
 
 class SearchBarWidget extends StatelessWidget {
@@ -27,7 +28,7 @@ class SearchBarWidget extends StatelessWidget {
                     onPressed: onSearch,
                     icon: const Icon(Icons.search, color: WeatherAppTheme.background),
                   ),
-                  hintText: 'Enter city name',
+                  hintText: AppStrings.enterCityNAme,
                   filled: true,
                   fillColor: Colors.transparent,
                   border: OutlineInputBorder(

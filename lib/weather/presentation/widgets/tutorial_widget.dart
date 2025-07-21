@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:sky_feels/core/app_text.dart';
 import 'package:sky_feels/core/app_theme.dart';
 
 class TutorialWidget extends StatefulWidget {
@@ -15,17 +16,16 @@ class _TutorialWidgetState extends State<TutorialWidget> {
 
   final List<Map<String, dynamic>> tutorialContent = [
     {
-      'text': 'Check the weather conditions',
-      'subText': 'Stay updated with real-time forecasts',
+      'text':AppStrings.checkTheWeather ,
+      'subText': AppStrings.stayUpdated,
     },
     {
-      'text':'Prepare for all weather possibilities' ,
-      'subText': 
-      'You pray for rain, you gotta deal with the mud too. That’s a part of it.',
+      'text':AppStrings.prepareForAll ,
+      'subText': AppStrings.youPrayForRain,
     },
     {
-      'text': 'Enjoy your day with Sky Feels!',
-      'subText': 'Plan your day with confidence',
+      'text': AppStrings.enjoyYourDay,
+      'subText': AppStrings.planYourDay,
     },
   ];
 
