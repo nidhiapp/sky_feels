@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sky_feels/core/app_theme.dart';
 import '../../domain/entities/weather_entity.dart';
+import 'weather_icon.dart';
 
 class HorizontalForecast extends StatelessWidget {
   final DateTime currentDay;
@@ -17,37 +18,6 @@ class HorizontalForecast extends StatelessWidget {
     required this.forecasts,
   });
 
-  Widget _getWeatherIcon(String? condition) {
-    if (condition == null) {
-      return const Icon(Icons.wb_cloudy, size: 40, color: Colors.grey);
-    }
-    switch (condition.toLowerCase()) {
-      case 'clear':
-        return const Icon(Icons.wb_sunny, color: Colors.orange, size: 40);
-      case 'clouds':
-        return const Icon(Icons.cloud, color: Colors.blueGrey, size: 40);
-      case 'rain':
-      case 'drizzle':
-        return const Icon(Icons.beach_access, color: Colors.blue, size: 40);
-      case 'snow':
-        return const Icon(Icons.ac_unit, color: Colors.lightBlue, size: 40);
-      case 'thunderstorm':
-        return const Icon(Icons.flash_on, color: Colors.yellow, size: 40);
-      case 'mist':
-      case 'smoke':
-      case 'haze':
-      case 'dust':
-      case 'fog':
-      case 'sand':
-      case 'ash':
-      case 'squall':
-      case 'tornado':
-        return const Icon(Icons.filter_drama, color: Colors.grey, size: 40);
-      default:
-        return const Icon(Icons.wb_cloudy, size: 40, color: Colors.grey);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     // Generate the next 7 days
@@ -57,7 +27,7 @@ class HorizontalForecast extends StatelessWidget {
     );
 
     return SizedBox(
-      height: 120,
+      height: 90,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 7,
@@ -71,17 +41,16 @@ class HorizontalForecast extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 5),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    selectedIndex != index
-                        ? WeatherAppTheme.gradientBlue2.withOpacity(0.4)
-                        : WeatherAppTheme.background.withOpacity(0.4),
-                    selectedIndex != index
-                        ? WeatherAppTheme.gradientBlue1.withOpacity(0.4)
-                        : WeatherAppTheme.background.withOpacity(0.4)
-                  ]),
-                  borderRadius: BorderRadius.circular(40),
-                  )
-                  ,
+                gradient: LinearGradient(colors: [
+                  selectedIndex != index
+                      ? WeatherAppTheme.gradientBlue2.withOpacity(0.4)
+                      : WeatherAppTheme.background.withOpacity(0.4),
+                  selectedIndex != index
+                      ? WeatherAppTheme.gradientBlue1.withOpacity(0.4)
+                      : WeatherAppTheme.background.withOpacity(0.4)
+                ]),
+                borderRadius: BorderRadius.circular(40),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -94,7 +63,7 @@ class HorizontalForecast extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  _getWeatherIcon(forecast.condition),
+                  WeatherIcon(condition: forecast.condition, size: 30),
                   const SizedBox(height: 8),
                 ],
               ),

@@ -5,6 +5,7 @@ import 'info_card.dart';
 import 'horizontal_forecast.dart';
 import 'bottom_forecast_list.dart';
 import 'package:sky_feels/core/app_theme.dart';
+import 'weather_icon.dart';
 
 class WeatherCard extends StatelessWidget {
   final WeatherEntity weather;
@@ -30,7 +31,7 @@ class WeatherCard extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(height: 10),
+        //  const SizedBox(height: 8),
           HorizontalForecast(
             currentDay: DateTime.now(),
             selectedIndex: selectedForecastIndex,
@@ -75,9 +76,15 @@ class WeatherCard extends StatelessWidget {
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
-                        Text(selectedDayForecast.condition,
-                            style: const TextStyle(
-                                fontSize: 14, color: Colors.white70)),
+                        Row(
+                          children: [
+                            WeatherIcon(condition: selectedDayForecast.condition, size: 20),
+                            const SizedBox(width: 8),
+                            Text(selectedDayForecast.condition,
+                                style: const TextStyle(
+                                    fontSize: 14, color: Colors.white70)),
+                          ],
+                        ),
                       ],
                     ),
                     // Temperature
@@ -120,8 +127,8 @@ class WeatherCard extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 24),
-          BottomForecastList(weather: weather),
+          const SizedBox(height: 14),
+           BottomForecastList(weather: weather),
         ],
       ),
     );

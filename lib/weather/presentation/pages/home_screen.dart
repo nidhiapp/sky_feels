@@ -82,7 +82,7 @@ class _WeatherScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: ()=> FocusScope.of(context).unfocus(),
-      child: Scaffold(
+      child: Scaffold(resizeToAvoidBottomInset: false,
         body: Stack(
           alignment: Alignment.bottomCenter,
           children: [
