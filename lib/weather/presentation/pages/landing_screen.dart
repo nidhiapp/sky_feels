@@ -1,12 +1,7 @@
-     //  Icon(Icons.wb_sunny_rounded, size: 50, color: Color(0xFFFFD74C)),
-            // Cloud
-           // const Icon(Icons.cloud, size: 100, color: Colors.white),
-          //Icon(Icons.ac_unit, color: Colors.white70),
 import 'package:flutter/material.dart';
 import 'package:sky_feels/core/app_images.dart';
 import 'package:sky_feels/core/app_theme.dart';
 import 'package:sky_feels/weather/presentation/pages/home_screen.dart';
-import 'package:sky_feels/weather/presentation/pages/weather_screen.dart';
 import 'package:sky_feels/weather/presentation/widgets/tutorial_widget.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -33,13 +28,24 @@ class LandingScreen extends StatelessWidget {
 
                 const Align(
                   alignment: Alignment.topLeft,
-                  child: Text(
-                    'Welcome to Sky Feels',
-                    style: WeatherAppTheme.headline2White,
-                  
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Welcome to',
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: Colors.white70,
+                      fontWeight: FontWeight.w300,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 100,),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Sky Feels',
+                    style: WeatherAppTheme.headline2White,
+                  ),
+                ])),
+                const SizedBox(height: 80,),
                 Image.asset(AppImages.weatherApp,height: 180,width: 180)
               ],
             ),
@@ -103,7 +109,6 @@ class LandingScreen extends StatelessWidget {
           ],
         ),
       ),
-      // ❄ Snowflake placed similar to the image you showed
       Positioned(
         top: -40,
         right: 10,

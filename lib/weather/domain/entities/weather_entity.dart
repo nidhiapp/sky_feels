@@ -10,8 +10,8 @@ class ForecastEntity {
   final int? pressure;
   final int? visibility;
   final int? cloudiness;
-  final int? sunrise; // Unix timestamp
-  final int? sunset; // Unix timestamp
+  final int? sunrise; 
+  final int? sunset; 
 
   ForecastEntity({
     required this.date,
@@ -39,8 +39,8 @@ class WeatherEntity {
   final int? pressure;
   final int? visibility;
   final int? cloudiness;
-  final int? sunrise; // Unix timestamp
-  final int? sunset; // Unix timestamp
+  final int? sunrise; 
+  final int? sunset;
   final List<ForecastEntity>? forecast;
 
   WeatherEntity({

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:sky_feels/core/app_theme.dart';
 import '../../domain/entities/weather_entity.dart';
 
 class BottomForecastList extends StatelessWidget {
@@ -56,7 +57,6 @@ class BottomForecastList extends StatelessWidget {
           dailyForecasts.add(f);
         }
       } catch (e) {
-        // In case of a date parsing error, we can log it and skip the entry.
         debugPrint('Could not parse date: ${f.date}');
       }
     }
@@ -64,7 +64,7 @@ class BottomForecastList extends StatelessWidget {
     return Column(
       children: dailyForecasts.take(4).map((dayForecast) {
         final date = DateTime.parse(dayForecast.date);
-        final dayName = DateFormat('EEEE').format(date);
+        final formattedDate = DateFormat('dd MMM  EEEE').format(date); // 👈 New format
 
         return ListTile(
           leading: SizedBox(
@@ -72,9 +72,11 @@ class BottomForecastList extends StatelessWidget {
             height: 40,
             child: _getWeatherIcon(dayForecast.condition),
           ),
-          title: Text(dayName),
+          title: Text(formattedDate),
           trailing: Text(
-              "${dayForecast.minTemp.toStringAsFixed(0)}° / ${dayForecast.maxTemp.toStringAsFixed(0)}°"),
+            "${dayForecast.minTemp.toStringAsFixed(0)}° / ${dayForecast.maxTemp.toStringAsFixed(0)}°",
+            style: WeatherAppTheme.subtitle
+          ),
           subtitle: Text(dayForecast.condition),
         );
       }).toList(),

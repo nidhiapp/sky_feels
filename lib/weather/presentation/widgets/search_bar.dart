@@ -25,7 +25,7 @@ class SearchBarWidget extends StatelessWidget {
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
                     onPressed: onSearch,
-                    icon: const Icon(Icons.search, color: WeatherAppTheme.darkerText),
+                    icon: const Icon(Icons.search, color: WeatherAppTheme.background),
                   ),
                   hintText: 'Enter city name',
                   filled: true,

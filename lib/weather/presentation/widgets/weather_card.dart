@@ -47,7 +47,17 @@ class WeatherCard extends StatelessWidget {
                     WeatherAppTheme.gradientBlue1,
                     WeatherAppTheme.gradientBlue2
                   ],
-                )),
+                  
+                ),
+             boxShadow: [
+      BoxShadow(
+        color: WeatherAppTheme.gradientBlue2.withOpacity(0.4),
+        blurRadius: 30,
+        spreadRadius: 5,
+        offset: const Offset(0, 10), // Pushes shadow downward
+      ),
+    ],
+                ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

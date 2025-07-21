@@ -8,12 +8,11 @@ import 'package:sky_feels/weather/data/data_sources/weather_remote_data_source.d
 import 'package:sky_feels/weather/data/models/weather_model.dart';
 import 'package:sky_feels/weather/domain/entities/weather_entity.dart';
 import 'package:sky_feels/weather/domain/repositories/weather_repository.dart';
-import 'package:sky_feels/weather/data/models/weather_model.dart';
 
 class WeatherRepositoryImpl implements WeatherRepository {
   final WeatherRemoteDataSource remoteDataSource;
-  final WeatherLocalDataSource localDataSource; // optional
-  final NetworkInfo networkInfo;                // optional
+  final WeatherLocalDataSource localDataSource; 
+  final NetworkInfo networkInfo;                
 
   WeatherRepositoryImpl({
     required this.remoteDataSource,
@@ -38,7 +37,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
           forecast: remoteForecast.forecast,
         );
 
-        localDataSource.cacheWeather(combinedWeather); // cache optional
+        localDataSource.cacheWeather(combinedWeather);
         return Right(combinedWeather);
       } else {
         final localWeather = await localDataSource.getLastWeather();

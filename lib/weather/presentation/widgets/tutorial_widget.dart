@@ -47,16 +47,23 @@ class _TutorialWidgetState extends State<TutorialWidget> {
            const SizedBox(height: 16),
           CarouselSlider(
             items: tutorialText
-                .map((e) => Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
-                          e,
-                          style: WeatherAppTheme.headline2Black,
-                          textAlign: TextAlign.left,
+                .map((e) => Container(
+                   decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: WeatherAppTheme.gradientBlue2.withOpacity(0.4),
+         
+          ),
+                  child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            e,
+                            style: WeatherAppTheme.title,
+                            textAlign: TextAlign.left,
+                          ),
                         ),
                       ),
-                    ))
+                ))
                 .toList(),
             carouselController: _carouselController,
             options: CarouselOptions(

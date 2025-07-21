@@ -73,20 +73,15 @@ class HorizontalForecast extends StatelessWidget {
               decoration: BoxDecoration(
                   gradient: LinearGradient(colors: [
                     selectedIndex != index
-                        ? WeatherAppTheme.gradientBlue2
-                        : WeatherAppTheme.background,
+                        ? WeatherAppTheme.gradientBlue2.withOpacity(0.4)
+                        : WeatherAppTheme.background.withOpacity(0.4),
                     selectedIndex != index
-                        ? WeatherAppTheme.gradientBlue1
-                        : WeatherAppTheme.background
+                        ? WeatherAppTheme.gradientBlue1.withOpacity(0.4)
+                        : WeatherAppTheme.background.withOpacity(0.4)
                   ]),
                   borderRadius: BorderRadius.circular(40),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                    )
-                  ]),
+                  )
+                  ,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

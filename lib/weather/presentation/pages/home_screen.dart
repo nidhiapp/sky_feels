@@ -8,6 +8,7 @@ import 'package:sky_feels/weather/presentation/bloc/weather_bloc.dart';
 import 'package:sky_feels/weather/presentation/bloc/weather_event.dart';
 import 'package:sky_feels/weather/presentation/bloc/weather_state.dart';
 import 'package:sky_feels/weather/presentation/widgets/search_bar.dart';
+import 'package:sky_feels/weather/presentation/widgets/shimmer_home_screen.dart';
 import 'package:sky_feels/weather/presentation/widgets/weather_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,7 +24,6 @@ class _WeatherScreenState extends State<HomeScreen>
   final List<String> _searchHistory = [];
 
   late AnimationController _animationController;
-  late Animation<double> _fadeAnimation;
 
   @override
   void initState() {
@@ -32,10 +32,10 @@ class _WeatherScreenState extends State<HomeScreen>
       duration: const Duration(milliseconds: 800),
       vsync: this,
     );
-    _fadeAnimation = CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    );
+    // _fadeAnimation = CurvedAnimation(
+    //   parent: _animationController,
+    //   curve: Curves.easeInOut,
+    // );
 
     _fetchInitialWeather();
   }
@@ -62,8 +62,8 @@ class _WeatherScreenState extends State<HomeScreen>
     return BlocBuilder<WeatherBloc, WeatherState>(
       builder: (context, state) {
         return state.when(
-          initial: () => const Center(child: CircularProgressIndicator()),
-          loading: () => const Center(child: CircularProgressIndicator()),
+          initial: () => const Center(child: ShimmerHomeScreen()),
+          loading: () => const Center(child: ShimmerHomeScreen()),
           loaded: (weather, selectedForecastIndex) {
             _animationController.forward(from: 0);
             return WeatherCard(
@@ -129,7 +129,11 @@ class _WeatherScreenState extends State<HomeScreen>
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Icon(Icons.arrow_back, color: WeatherAppTheme.white),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Icon(Icons.arrow_back, color: WeatherAppTheme.white)),
                         const SizedBox(width: 8),
                         if (appState.isSearchBarVisible)
                           Expanded(
@@ -140,7 +144,7 @@ class _WeatherScreenState extends State<HomeScreen>
                           ),
                         IconButton(
                           icon: Icon(
-                            appState.isSearchBarVisible ? Icons.cancel : Icons.search,
+                            appState.isSearchBarVisible ? Icons.cancel_outlined : Icons.search,
                             color: WeatherAppTheme.white,
                           ),
                           onPressed: () {
@@ -151,9 +155,6 @@ class _WeatherScreenState extends State<HomeScreen>
                     );
                   },
                 ),
-                // You can re-enable this if needed
-                // if (_searchHistory.isNotEmpty)
-                //   SearchHistory(...),
                 Expanded(child: _buildContent()),
               ],
             ),
